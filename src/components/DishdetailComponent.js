@@ -1,20 +1,20 @@
 import { Component } from "react";
-import { Card, CardBody, CardImg, CardText, CardTitle, ListGroup, ListGroupItem, } from "reactstrap";
+import { Card, CardBody, CardImg, CardText, CardTitle} from "reactstrap";
 
-class DishdetailComponent extends Component {
-    constructor(props) {
-        super(props);
-
-    }
+class DishDetail extends Component {
+   
     renderComments(comments) {
-
         if (comments != null) {
             const commentsElement = comments.map((comment) => {
                 return (
-                    <ListGroupItem className="border-0">
+                    <li className="border-0">
                         <p>{comment.comment}</p>
-                        <p>--{comment.author} , {comment.date}</p>
-                    </ListGroupItem>
+                        <p>--{comment.author} , {new Intl.DateTimeFormat('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: '2-digit'
+                        }).format(new Date(comment.date))}</p>
+                    </li>
                 );
             });
 
@@ -31,29 +31,31 @@ class DishdetailComponent extends Component {
     render() {
         // get dish from props
         const dish = this.props.dish;
-
         if (dish != null) {
             return (
-                <div className="row">
-                    <div className="col-12 col-md-5 m-1">
-                        <Card >
-                            <CardImg top src={dish.image} alt={dish.name} />
-                            <CardBody>
-                                <CardTitle>{dish.name}</CardTitle>
-                                <CardText>{dish.description}</CardText>
-                            </CardBody>
-                        </Card>
-                    </div>
-                    <div className="col-12 col-md-5 m-1">
-                        <div>
-                            <h4>Comments</h4>
-                            <ListGroup>
-                                {this.renderComments(dish.comments)}
-                            </ListGroup>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12 col-md-5 m-1">
+                            <Card >
+                                <CardImg top src={dish.image} alt={dish.name} />
+                                <CardBody>
+                                    <CardTitle>{dish.name}</CardTitle>
+                                    <CardText>{dish.description}</CardText>
+                                </CardBody>
+                            </Card>
                         </div>
-                    </div>
+                        <div className="col-12 col-md-5 m-1">
+                            <div>
+                                <h4>Comments</h4>
+                                <ul className="list-unstyled">
+                                    {this.renderComments(dish.comments)}
+                                </ul>
+                            </div>
+                        </div>
 
+                    </div>
                 </div>
+
 
             );
         }
@@ -65,4 +67,4 @@ class DishdetailComponent extends Component {
 
     }
 }
-export default DishdetailComponent;
+export default DishDetail;
