@@ -6,6 +6,7 @@ import { COMMENTS } from "../shared/comments";
 import { DISHES } from "../shared/dishes";
 import { LEADERS } from "../shared/leaders";
 import { PROMOTIONS } from "../shared/promotions";
+import About from "./AboutComponent";
 import Contact from "./ContactComponent";
 import DishDetail from "./DishdetailComponent";
 import Footer from "./FooterComponent";
@@ -43,6 +44,11 @@ class Main extends Component {
                 />
             );
         }
+        const AboutPage =() =>{
+            return(
+                <About leaders={this.state.leaders} />
+            );
+        }
 
         return (
             <div>
@@ -51,6 +57,7 @@ class Main extends Component {
                     <Route path='/home' component={HomePage} />
                     <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
                     <Route path='/menu/:dishId' component={DishWithId} />
+                    <Route exact path='/aboutus' component={AboutPage} />
                     <Route exact path='/contactus' component={Contact} />
                     <Redirect to="/home" />
                 </Switch>
