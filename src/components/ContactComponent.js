@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Control, Errors, LocalForm } from 'react-redux-form';
 import { Link } from 'react-router-dom';
-import {Breadcrumb, BreadcrumbItem, Button, Col, Form, FormFeedback, FormGroup, Input, Label, Row } from 'reactstrap';
+import {Breadcrumb, BreadcrumbItem, Button, Col, Label, Row } from 'reactstrap';
 
 class Contact extends Component {
 
