@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { Route } from "react-router-dom";
 import { Switch } from "react-router-dom";
+import { addComment } from "../redux/ActionCreators";
 import About from "./AboutComponent";
 import Contact from "./ContactComponent";
 import DishDetail from "./DishdetailComponent";
@@ -20,6 +21,11 @@ const mapStateToProps = state =>{
         leaders: state.leaders
       };
 };
+const mapDispatchToProps = dispatch => {
+    return {
+        addComment: (dishId, author, rating, comment) => dispatch(addComment(dishId, author, rating, comment)) 
+    };
+};
 
 class Main extends Component {
     constructor(props) {
@@ -32,6 +38,7 @@ class Main extends Component {
                     dish={this.props.dishes.filter((dish) => dish.featured)[0]}
                     promotion={this.props.promotions.filter((promo) => promo.featured)[0]}
                     leader={this.props.leaders.filter((leader) => leader.featured)[0]}
+                    
                 />
             );
         }
@@ -41,6 +48,7 @@ class Main extends Component {
                 <DishDetail
                     dish={this.props.dishes.filter((dish) => dish.id === +match.params.dishId)[0]}
                     comments={this.props.comments.filter((comment) => comment.dishId === +match.params.dishId)}
+                    addComment={this.props.addComment}
                 />
             );
         }
@@ -67,4 +75,4 @@ class Main extends Component {
         );
     }
 }
-export default withRouter(connect(mapStateToProps)(Main));
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Main));
