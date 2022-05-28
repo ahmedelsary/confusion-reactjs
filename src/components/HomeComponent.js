@@ -26,14 +26,16 @@ function RenderCard({item, isLoading, errorMess}) {
         );
     }
 function Home(props) {
+
     return (
         <div className="container">
             <div className="row align-items-start">
                 <div className="col-12 col-md m-1">
-                    <RenderCard item= {props.dish}  isLoading= {props.dishIsLoading} errorMess= {props.dishErrorMess}/>
+                    <RenderCard item= {props.dish}  isLoading= {props.dishIsLoading} errorMess = {props.dishErrorMess}/>
                 </div>
                 <div className="col-12 col-md m-1">
-                    <RenderCard item={props.promotion} isLoading={props.promoLoading} errMess={props.promoErrMess} />
+                    <RenderCard item={props.promotion} isLoading={props.promoLoading} errorMess = {props.promoErrMess} />
+
                 </div>
                 <div className="col-12 col-md m-1">
                     <RenderCard item={props.leader} />
