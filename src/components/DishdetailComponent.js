@@ -6,6 +6,8 @@ import { Breadcrumb } from "reactstrap";
 import { BreadcrumbItem } from "reactstrap";
 import { baseUrl } from "../shared/baseUrl";
 import Loading from "./LoadingComponent";
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
+
 
 class CommentForm extends Component {
     constructor(props) {
@@ -99,6 +101,7 @@ function RenderComments({ comments, postComment, dishId }) {
     if (comments != null) {
         const commentsElements = comments.map((comment) => {
             return (
+                <Fade in>
                 <li className="border-0">
                     <p>{comment.comment}</p>
                     <p>--{comment.author} , {new Intl.DateTimeFormat('en-US', {
@@ -107,12 +110,15 @@ function RenderComments({ comments, postComment, dishId }) {
                         day: '2-digit'
                     }).format(new Date(comment.date))}</p>
                 </li>
+                </Fade>
             );
         });
 
         return (
             <>
-                {commentsElements}
+                <Stagger in>
+                     {commentsElements}
+                </Stagger>
                 <CommentForm dishId={dishId} postComment={postComment} />
             </>
 
@@ -127,6 +133,11 @@ function RenderComments({ comments, postComment, dishId }) {
 }
 function RenderDish({ dish }) {
     return (
+        <FadeTransform
+        in
+        transformProps={{
+            exitTransform: 'scale(0.5) translateY(-50%)'
+        }}>
         <Card>
             <CardImg top src={baseUrl + dish.image} alt={dish.name} />
             <CardBody>
@@ -134,6 +145,7 @@ function RenderDish({ dish }) {
                 <CardText>{dish.description}</CardText>
             </CardBody>
         </Card>
+        </FadeTransform>
     );
 }
 const DishDetail = (props) => {
