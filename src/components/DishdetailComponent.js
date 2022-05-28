@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Control, Errors, LocalForm } from "react-redux-form";
 import { Link } from "react-router-dom";
-import { Button, Card, CardBody, CardImg, CardText, CardTitle, Col, Label, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
+import { Button, Card, CardBody, CardImg, CardText, CardTitle, Label, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
 import { Breadcrumb } from "reactstrap";
 import { BreadcrumbItem } from "reactstrap";
+import { baseUrl } from "../shared/baseUrl";
 import Loading from "./LoadingComponent";
 
 class CommentForm extends Component {
@@ -127,7 +128,7 @@ function RenderComments({ comments, addComment, dishId }) {
 function RenderDish({ dish }) {
     return (
         <Card>
-            <CardImg top src={dish.image} alt={dish.name} />
+            <CardImg top src={baseUrl + dish.image} alt={dish.name} />
             <CardBody>
                 <CardTitle>{dish.name}</CardTitle>
                 <CardText>{dish.description}</CardText>

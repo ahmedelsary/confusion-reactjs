@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardImg, CardImgOverlay, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { baseUrl } from "../shared/baseUrl";
 import Loading from "./LoadingComponent";
 
 function RenderMenuItem({ dish }) {
     return (
         <Card Key='{dish.id}' >
             <Link to={`/menu/${dish.id}`} >
-                <CardImg top width="100%" src={dish.image} alt={dish.name} />
+                <CardImg top width="100%" src={baseUrl + dish.image} alt={dish.name} />
 
                 <CardImgOverlay >
                     <CardTitle heading>{dish.name}</CardTitle>
